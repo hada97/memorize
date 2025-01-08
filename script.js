@@ -2,7 +2,7 @@ let words = [];
 let meanings = [];
 let currentCard = 0;
 let timerInterval;
-let gameTimer = 5;
+let gameTimer = 3;
 let displayTime = 3; // Tempo para exibir o significado
 let cardFlippedByClick = false;
 
@@ -18,13 +18,39 @@ function handleFile(event) {
         const workbook = XLSX.read(data, { type: "binary" });
         const sheet = workbook.Sheets[workbook.SheetNames[0]];
         
-        const rows = XLSX.utils.sheet_to_json(sheet);
-        words = rows.map(row => row['Palavra']); // Coluna de palavras
-        meanings = rows.map(row => row['Significado']); // Coluna de significados
+        const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 }); // Lê como uma matriz, sem mapear para objetos
+
+        // Verificar se o arquivo possui 2 colunas e o mesmo número de linhas
+        if (rows[0].length !== 2) {
+            alert("O arquivo precisa ter exatamente 2 colunas.");
+            return;
+        }
+
+        const numRows = rows.length;
+        if (numRows === 1) {
+            alert("O arquivo precisa ter mais de uma linha de dados.");
+            return;
+        }
+
+        // Verifica se todas as linhas possuem 2 colunas
+        for (let i = 0; i < numRows; i++) {
+            if (rows[i].length !== 2) {
+                alert("Todas as linhas do arquivo precisam ter exatamente 2 colunas.");
+                return;
+            }
+        }
+
+        // Se tudo estiver certo, preencher as listas de palavras e significados
+        words = rows.map(row => row[0]); // Primeira coluna (palavras)
+        meanings = rows.map(row => row[1]); // Segunda coluna (significados)
+        
+        console.log('Palavras:', words);
+        console.log('Significados:', meanings);
     };
     
     reader.readAsBinaryString(file);
 }
+
 
 function startGame() {
     // Captura os valores dos inputs
@@ -96,7 +122,7 @@ function flipCard(showMeaning) {
         if (showMeaning) {
             currentCardElement.classList.add('flipped');
             currentCardElement.textContent = currentCardElement.getAttribute('data-meaning'); // Exibe o significado
-            currentCardElement.style.backgroundColor = "green"; // Muda a cor da carta para verde
+            currentCardElement.style.backgroundColor = "#ee62d7"; // Muda a cor da carta
         } else {
             currentCardElement.classList.remove('flipped');
             currentCardElement.textContent = words[currentCard]; // Retorna à palavra

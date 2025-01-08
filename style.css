@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background: linear-gradient(to right, #93cbff, #7c7bc0);
+    background: linear-gradient(to right, #dfdfdf, #b5c0ff);
     min-height: 100vh;
 }
 
@@ -20,23 +20,23 @@ body {
 }
 
 .card {
-    width: 150px;
-    height: 150px;
-    margin: 10px 0; /* Espaço vertical entre as cartas */
+    width: 200px;
+    height: 200px;
+    margin: 20px 0; /* Espaço vertical entre as cartas */
     border: 2px solid #333;
-    border-radius: 10px;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: lightgray;
-    font-size: 18px;
+    background-color: rgb(235, 235, 235);
+    font-size: 22px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s;
 }
 
 .card.flipped {
-    background-color: lightgreen;
+    background-color: rgb(230, 144, 238);
 }
 
 input, button {
@@ -47,17 +47,16 @@ input, button {
 input[type="number"] {
     width: 40px; /* Define a largura dos inputs como 40px */
     padding: 5px;
-    font-size: 16px; /* Ajuste o tamanho da fonte para se adequar ao novo tamanho */
+    font-size: 14px; /* Ajuste o tamanho da fonte para se adequar ao novo tamanho */
     border: 2px solid #333;
     border-radius: 5px;
     text-align: center; /* Centraliza o número no input */
     background-color: #f0f0f0;
-    transition: background-color 0.3s;
 }
 
 input[type="number"]:focus {
     border-color: #4CAF50; /* Muda a cor da borda ao focar */
-    background-color: #e8f5e9; /* Cor de fundo suave ao focar */
+   
 }
 
 
@@ -80,6 +79,6 @@ button#start-game:hover {
 }
 
 button#start-game:focus {
-    border-color: #4CAF50; /* Borda verde ao focar */
+
     background-color: #e8f5e9;
 }
