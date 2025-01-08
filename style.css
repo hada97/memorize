@@ -1,28 +1,85 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    background: linear-gradient(to right, #93cbff, #7c7bc0);
+    min-height: 100vh;
 }
 
 #game-board {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    flex-direction: column; /* Organiza os elementos em coluna */
+    align-items: center;    /* Centraliza os elementos horizontalmente */
+    gap: 10px;              /* Adiciona um espaço de 10px entre os elementos */
+}
+
+#timer-display {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;  /* Espaçamento superior de 10px */
 }
 
 .card {
     width: 150px;
     height: 150px;
-    margin: 10px;
+    margin: 10px 0; /* Espaço vertical entre as cartas */
     border: 2px solid #333;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background-color: lightgray;
     font-size: 18px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .card.flipped {
     background-color: lightgreen;
+}
+
+input, button {
+    margin: 10px 0; /* Adiciona um espaço entre os campos de entrada e o botão */
+}
+
+
+input[type="number"] {
+    width: 40px; /* Define a largura dos inputs como 40px */
+    padding: 5px;
+    font-size: 16px; /* Ajuste o tamanho da fonte para se adequar ao novo tamanho */
+    border: 2px solid #333;
+    border-radius: 5px;
+    text-align: center; /* Centraliza o número no input */
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+}
+
+input[type="number"]:focus {
+    border-color: #4CAF50; /* Muda a cor da borda ao focar */
+    background-color: #e8f5e9; /* Cor de fundo suave ao focar */
+}
+
+
+button#start-game {
+    width: 200px; /* Define a largura do botão */
+    padding: 10px;
+    font-size: 18px; /* Tamanho de fonte maior para o botão */
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block; /* Faz o botão ocupar uma linha inteira */
+    margin: 20px auto; /* Centraliza o botão horizontalmente e dá margem superior/inferior */
+}
+
+button#start-game:hover {
+    background-color: #e8f5e9; /* Fundo suave ao passar o mouse */
+}
+
+button#start-game:focus {
+    border-color: #4CAF50; /* Borda verde ao focar */
+    background-color: #e8f5e9;
 }
