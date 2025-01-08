@@ -1,23 +1,61 @@
 body {
+    display: flex;
     font-family: Arial, sans-serif;
     text-align: center;
-    background: linear-gradient(to right, #dfdfdf, #b5c0ff);
-    min-height: 100vh;
+    align-items: center;
+    background: linear-gradient(to right, #888282, #99a6ee);
+    height: 100vh;
+    margin: 0;
+}
+
+.main-container {
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    height: 80%;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+input, button {
+    margin: 10px 0;
 }
 
 #game-board {
     display: flex;
     flex-direction: column; /* Organiza os elementos em coluna */
     align-items: center;    /* Centraliza os elementos horizontalmente */
-    gap: 10px;              /* Adiciona um espaço de 10px entre os elementos */
+    gap: 10px;    
+    font-size: 22px;          /* Adiciona um espaço de 10px entre os elementos */
 }
 
 #timer-display {
-    font-size: 18px;
+    font-size: 22px;  
     font-weight: bold;
     color: #333;
-    margin-top: 10px;  /* Espaçamento superior de 10px */
 }
+
+#game-over-message {
+    width: 150px; /* Define a largura do botão */
+    padding: 10px;
+    font-size: 20px; /* Tamanho de fonte maior para o botão */
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    text-align: center;
+    transition: background-color 0.3s;
+    display: block; /* Faz o botão ocupar uma linha inteira */
+    margin: 20px auto; /* Centraliza o botão horizontalmente e dá margem superior/inferior */
+}
+
+#game-over-message:hover {
+    opacity: 0.8; /* Efeito de hover para suavizar a mensagem */
+}
+
 
 .card {
     width: 200px;
@@ -61,11 +99,11 @@ input[type="number"]:focus {
 
 
 button#start-game {
-    width: 200px; /* Define a largura do botão */
+    width: 150px; /* Define a largura do botão */
     padding: 10px;
-    font-size: 18px; /* Tamanho de fonte maior para o botão */
+    font-size: 20px; /* Tamanho de fonte maior para o botão */
     border: 2px solid #333;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: #f0f0f0;
     text-align: center;
     cursor: pointer;
@@ -82,3 +120,15 @@ button#start-game:focus {
 
     background-color: #e8f5e9;
 }
+
+
+/* Centralizando o container e o texto */
+input[type="file"] {
+    display: block;
+    margin: 0 auto; /* Centraliza o input horizontalmente */
+    text-align: center; /* Alinha o texto ao centro */
+    padding: 20px;
+   
+}
+
+

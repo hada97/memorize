@@ -62,12 +62,44 @@ function startGame() {
         return;
     }
 
+    // Oculta o botão "Iniciar Jogo"
+    document.getElementById("start-game").style.display = "none";
+
     currentCard = 0;
     document.getElementById("game-board").innerHTML = ""; // Limpar o tabuleiro do jogo
 
     displayCard(); // Exibe a primeira carta
     startTimer(); // Inicia o cronômetro
 }
+
+function handleEndOfCard() {
+    setTimeout(function() {
+        flipCard(false); // Volta a mostrar a palavra
+        currentCard++;
+        const gameBoard = document.getElementById("game-board");
+
+        if (currentCard < words.length) {
+            displayCard(); // Exibe a próxima carta
+            startTimer(); // Reinicia o cronômetro
+        } else {
+            // Limpa o conteúdo do game-board antes de exibir a mensagem
+            gameBoard.innerHTML = ""; 
+
+            // Cria uma nova div para a mensagem "Jogo terminado"
+            const gameOverMessage = document.createElement('div');
+            gameOverMessage.id = 'game-over-message';
+            gameOverMessage.textContent = "Jogo terminado!";
+            
+            // Adiciona a nova div no game-board
+            gameBoard.appendChild(gameOverMessage);
+
+            // Exibe o botão "Iniciar Jogo" novamente
+            document.getElementById("start-game").style.display = "block";
+        }
+    }, displayTime * 1000); // Aguarda o tempo de exibição antes de avançar
+}
+
+
 
 function startTimer() {
     let timeLeft = gameTimer;
@@ -76,14 +108,14 @@ function startTimer() {
 
     const timerDisplay = document.createElement('div');
     timerDisplay.id = 'timer-display';
-    timerDisplay.textContent = `Tempo restante: ${timeLeft}s`;
+    timerDisplay.textContent = `${timeLeft}s`;
     document.getElementById("game-board").appendChild(timerDisplay); // Adiciona o cronômetro logo abaixo da carta
 
     cardFlippedByClick = false; // Reseta o estado do clique
 
     timerInterval = setInterval(function() {
         timeLeft--;
-        timerDisplay.textContent = `Tempo restante: ${timeLeft}s`;
+        timerDisplay.textContent = `${timeLeft}s`;
 
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
@@ -129,18 +161,4 @@ function flipCard(showMeaning) {
             currentCardElement.style.backgroundColor = ""; // Reseta a cor da carta
         }
     }
-}
-
-function handleEndOfCard() {
-    setTimeout(function() {
-        flipCard(false); // Volta a mostrar a palavra
-        currentCard++;
-        if (currentCard < words.length) {
-            displayCard(); // Exibe a próxima carta
-            startTimer(); // Reinicia o cronômetro
-        } else {
-            const gameBoard = document.getElementById("game-board");
-            gameBoard.innerHTML = "Jogo terminado!"; // Mensagem final
-        }
-    }, displayTime * 1000); // Aguarda o tempo de exibição antes de avançar
 }
