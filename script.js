@@ -5,6 +5,60 @@ let timerInterval;
 let gameTimer = 3;
 let displayTime = 3;
 let cardFlippedByClick = false;
+let shuffleMode = false;
+
+
+document.getElementById("checkboxInput").addEventListener("change", function() {
+    shuffleMode = this.checked; // Verifica se o checkbox foi marcado
+    if (shuffleMode) {
+        shuffleCards(); // Embaralha os cards se o modo aleatório estiver ativado
+    }
+});
+
+function shuffleCards() {
+    // Combina palavras e significados em um único array de objetos
+    const combined = words.map((word, index) => ({
+        word: word,
+        meaning: meanings[index]
+    }));
+
+    // Função para embaralhar algoritmo de Fisher-Yates
+    for (let i = combined.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [combined[i], combined[j]] = [combined[j], combined[i]];
+    }
+
+    words = combined.map(item => item.word);
+    meanings = combined.map(item => item.meaning);
+
+    console.log('Palavras embaralhadas:', words);
+    console.log('Significados embaralhados:', meanings);
+}
+
+function startGame() {
+    // Captura os valores dos inputs
+    gameTimer = parseInt(document.getElementById('timer').value);
+    displayTime = parseInt(document.getElementById('display-time').value);
+
+    if (words.length === 0 || meanings.length === 0) {
+        alert("Carregue um arquivo Excel primeiro!");
+        return;
+    }
+
+    document.getElementById("start-game").style.display = "none";
+
+    currentCard = 0;
+    document.getElementById("game-board").innerHTML = ""; // Limpar o tabuleiro do jogo
+
+    if (shuffleMode) {
+        shuffleCards(); // Se o modo aleatório estiver ativado, embaralha as cartas
+    }
+
+    displayCard();
+    startTimer();
+}
+
+
 
 document.getElementById("file-input").addEventListener("change", handleFile);
 document.getElementById("start-game").addEventListener("click", startGame);
@@ -52,25 +106,6 @@ function handleFile(event) {
 }
 
 
-function startGame() {
-    // Captura os valores dos inputs
-    gameTimer = parseInt(document.getElementById('timer').value);
-    displayTime = parseInt(document.getElementById('display-time').value);
-
-    if (words.length === 0 || meanings.length === 0) {
-        alert("Carregue um arquivo Excel primeiro!");
-        return;
-    }
-
-    // Oculta o botão "Iniciar Jogo"
-    document.getElementById("start-game").style.display = "none";
-
-    currentCard = 0;
-    document.getElementById("game-board").innerHTML = ""; // Limpar o tabuleiro do jogo
-
-    displayCard(); // Exibe a primeira carta
-    startTimer(); // Inicia o cronômetro
-}
 
 function handleEndOfCard() {
     setTimeout(function() {
@@ -182,20 +217,3 @@ function toggleShuffleMode() {
     }
 }
 
-function shuffleCards() {
-    // Cria um array de índices
-    const shuffledIndices = [...Array(words.length).keys()];
-
-    // Embaralha os índices
-    for (let i = shuffledIndices.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
-    }
-
-    // Cria novos arrays embaralhados de palavras e significados, mantendo o match
-    words = shuffledIndices.map(index => words[index]);
-    meanings = shuffledIndices.map(index => meanings[index]);
-
-    console.log('Palavras embaralhadas:', words);
-    console.log('Significados embaralhados:', meanings);
-}

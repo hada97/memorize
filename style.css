@@ -1,3 +1,4 @@
+/* Estilos do body */
 body {
   display: flex;
   font-family: Arial, sans-serif;
@@ -8,6 +9,7 @@ body {
   margin: 0;
 }
 
+/* Estilos do container principal */
 .main-container {
   width: 393px; /* Largura fixa */
   height: 700px;
@@ -18,17 +20,19 @@ body {
   border-radius: 20px;
 }
 
+/* Estilos do título */
 h1 {
   font-size: 2rem;
   margin-bottom: 20px;
 }
 
-
+/* Estilos dos inputs e botões */
 input,
 button {
   margin: 10px 0;
 }
 
+/* Estilos do quadro de jogo */
 #game-board {
   display: flex;
   flex-direction: column; /* Organiza os elementos em coluna */
@@ -38,12 +42,14 @@ button {
   margin: 30px;
 }
 
+/* Estilos do display de tempo */
 #timer-display {
   font-size: 22px;
   font-weight: bold;
   color: #333;
 }
 
+/* Estilos da mensagem de "game over" */
 #game-over-message {
   padding: 10px;
   font-size: 20px; /* Tamanho de fonte maior para o botão */
@@ -56,6 +62,7 @@ button {
   opacity: 0.8; /* Efeito de hover para suavizar a mensagem */
 }
 
+/* Estilos das cartas */
 .card {
   width: 200px;
   height: 200px;
@@ -76,12 +83,7 @@ button {
   background-color: #e9beec; /* Cor do fundo quando a carta é virada */
 }
 
-
-input,
-button {
-  margin: 10px 0; /* Adiciona um espaço entre os campos de entrada e o botão */
-}
-
+/* Estilos dos inputs de número */
 input[type="number"] {
   width: 30px; /* Define a largura dos inputs como 40px */
   padding: 3px; /* Reduz o padding para diminuir a altura */
@@ -93,11 +95,7 @@ input[type="number"] {
   height: 16px; /* Define a altura do input para garantir que seja mais baixo */
 }
 
-
-input[type="number"]:focus {
-  border-color: #4caf50; /* Muda a cor da borda ao focar */
-}
-
+/* Estilos do botão de "Iniciar Jogo" */
 button#start-game {
   width: 150px; /* Define a largura do botão */
   padding: 10px;
@@ -120,7 +118,7 @@ button#start-game:focus {
   background-color: #e8f5e9;
 }
 
-/* Centralizando o container e o texto */
+/* Estilos do input de arquivo */
 input[type="file"] {
   display: block;
   margin: 0 auto; /* Centraliza o input horizontalmente */
@@ -128,16 +126,7 @@ input[type="file"] {
   padding: 20px;
 }
 
-.config-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  font-size: 14px;
-}
-
-
+/* Estilos da label do input de arquivo */
 #file-label {
   display: inline-block;
   padding: 10px 20px;
@@ -157,6 +146,17 @@ input[type="file"] {
   background-color: #d1f7d6;
 }
 
+/* Estilos do container de configurações */
+.config-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* Estilos do container de checkbox */
 .checkbox-container {
   display: flex;
   align-items: center; /* Alinha verticalmente o texto e o checkbox */
@@ -165,10 +165,10 @@ input[type="file"] {
   font-size: 14px;
 }
 
+/* Estilos do input de checkbox */
 #checkboxInput {
   display: none;
 }
-
 
 /* Estilo do toggle switch */
 .toggleSwitch {
@@ -210,24 +210,3 @@ input[type="file"] {
   font-size: 14px;
   color: #333;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
