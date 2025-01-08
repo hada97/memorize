@@ -40,14 +40,9 @@ input, button {
 }
 
 #game-over-message {
-    width: 150px; /* Define a largura do botão */
     padding: 10px;
     font-size: 20px; /* Tamanho de fonte maior para o botão */
-    border: 2px solid #333;
-    border-radius: 10px;
-    background-color: #f0f0f0;
     text-align: center;
-    transition: background-color 0.3s;
     display: block; /* Faz o botão ocupar uma linha inteira */
     margin: 20px auto; /* Centraliza o botão horizontalmente e dá margem superior/inferior */
 }
@@ -132,3 +127,10 @@ input[type="file"] {
 }
 
 
+.config-container {
+ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

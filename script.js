@@ -88,7 +88,7 @@ function handleEndOfCard() {
             // Cria uma nova div para a mensagem "Jogo terminado"
             const gameOverMessage = document.createElement('div');
             gameOverMessage.id = 'game-over-message';
-            gameOverMessage.textContent = "Jogo terminado!";
+            gameOverMessage.textContent = "Fim de Jogo!";
             
             // Adiciona a nova div no game-board
             gameBoard.appendChild(gameOverMessage);
