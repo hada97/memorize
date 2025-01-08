@@ -3,7 +3,7 @@ let meanings = [];
 let currentCard = 0;
 let timerInterval;
 let gameTimer = 3;
-let displayTime = 3; // Tempo para exibir o significado
+let displayTime = 3;
 let cardFlippedByClick = false;
 
 document.getElementById("file-input").addEventListener("change", handleFile);
@@ -108,14 +108,14 @@ function startTimer() {
 
     const timerDisplay = document.createElement('div');
     timerDisplay.id = 'timer-display';
-    timerDisplay.textContent = `${timeLeft}s`;
+    timerDisplay.textContent = `${timeLeft}`;
     document.getElementById("game-board").appendChild(timerDisplay); // Adiciona o cronômetro logo abaixo da carta
 
     cardFlippedByClick = false; // Reseta o estado do clique
 
     timerInterval = setInterval(function() {
         timeLeft--;
-        timerDisplay.textContent = `${timeLeft}s`;
+        timerDisplay.textContent = `${timeLeft}`;
 
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
@@ -148,17 +148,54 @@ function displayCard() {
     gameBoard.appendChild(card); // Adiciona a carta ao tabuleiro
 }
 
+
+
 function flipCard(showMeaning) {
     const currentCardElement = document.querySelector(".card");
     if (currentCardElement) {
         if (showMeaning) {
             currentCardElement.classList.add('flipped');
             currentCardElement.textContent = currentCardElement.getAttribute('data-meaning'); // Exibe o significado
-            currentCardElement.style.backgroundColor = "#ee62d7"; // Muda a cor da carta
         } else {
             currentCardElement.classList.remove('flipped');
             currentCardElement.textContent = words[currentCard]; // Retorna à palavra
-            currentCardElement.style.backgroundColor = ""; // Reseta a cor da carta
         }
     }
+}
+
+document.getElementById("file-input").addEventListener("change", function(event) {
+    const fileName = event.target.files[0] ? event.target.files[0].name : "Escolha um arquivo";
+    document.getElementById("file-label").textContent = fileName;
+});
+
+
+
+
+function toggleShuffleMode() {
+    shuffleMode = !shuffleMode; // Alterna entre verdadeiro e falso
+
+    if (shuffleMode) {
+        shuffleCards(); // Se estiver no modo aleatório, embaralha as cartas
+        document.getElementById("shuffle-cards").textContent = "Desativar Modo Aleatório"; // Altera o texto do botão
+    } else {
+        document.getElementById("shuffle-cards").textContent = "Ativar Modo Aleatório"; // Restaura o texto do botão
+    }
+}
+
+function shuffleCards() {
+    // Cria um array de índices
+    const shuffledIndices = [...Array(words.length).keys()];
+
+    // Embaralha os índices
+    for (let i = shuffledIndices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
+    }
+
+    // Cria novos arrays embaralhados de palavras e significados, mantendo o match
+    words = shuffledIndices.map(index => words[index]);
+    meanings = shuffledIndices.map(index => meanings[index]);
+
+    console.log('Palavras embaralhadas:', words);
+    console.log('Significados embaralhados:', meanings);
 }
