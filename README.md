@@ -2,7 +2,7 @@
 
 ## 💻 Sobre o Projeto
 
-[Veja como ficou em Produção!](https://brave-sand-037e1081e.4.azurestaticapps.net/)
+[Veja como ficou em Produção!](https://hada97.github.io/memorize)
 
 Este projeto educativo para ajudar pessoas na memorização .
 
